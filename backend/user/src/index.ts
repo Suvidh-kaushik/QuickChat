@@ -4,6 +4,8 @@ import connectToMongoDB from './config/mongoDB.js';
 import connectToRedis from './config/redisDB.js';
 import userRouter from './routes/user.js';
 import { connectToRabbitMQ } from './config/rabbitMQ.js';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -15,6 +17,10 @@ connectToMongoDB();
 connectToRabbitMQ();
 
 app.use(express.json());
+app.use(cors({
+    credentials: true
+}));
+app.use(cookieParser());
 app.use("/api/v1",userRouter);
 
 app.listen(PORT, () => {

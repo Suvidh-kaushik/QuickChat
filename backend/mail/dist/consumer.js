@@ -14,7 +14,7 @@ export const startSendOtpConsumer = async () => {
         const channel = await connection.createChannel();
         const queueName = "send-otp";
         await channel.assertQueue(queueName, { durable: true });
-        console.log("✅ mail service consumer started successfully and listening for otp");
+        console.log("✅ mail service consumer started successfully and listening for OTP's");
         channel.consume(queueName, async (message) => {
             if (message) {
                 try {
